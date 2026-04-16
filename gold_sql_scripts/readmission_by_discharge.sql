@@ -1,0 +1,11 @@
+CREATE OR REPLACE TABLE workspace.gold.readmission_by_discharge AS
+SELECT
+  COALESCE(m.description, 'Unknown') AS discharge_disposition,
+  COUNT(*) AS total_cases,
+  SUM(CASE WHEN f.readmitted = '<30' THEN 1 ELSE 0 END) AS readmitted_cases,
+  CAST(SUM(CASE WHEN f.readmitted = '<30' THEN 1 ELSE 0 END) AS DOUBLE) / CAST(COUNT(*) AS DOUBLE) AS readmission_rate
+FROM workspace.silver.patient_encounters f
+LEFT JOIN workspace.silver.discharge_disposition_mapping m
+  ON f.discharge_disposition_id = m.discharge_disposition_id
+GROUP BY COALESCE(m.description, 'Unknown')
+ORDER BY total_cases DESC, discharge_disposition;
