@@ -1,0 +1,5 @@
+databricks-sdk>=0.57.0
+python-dotenv>=1.0.1
+# IMPORTANT: pin this to your Databricks Runtime-compatible version.
+# Example only (replace): databricks-connect==15.4.*
+databricks-connect==15.4.*
