@@ -14,12 +14,12 @@ Primary workflow:
 - Workspace host: `https://dbc-e150c196-2b0e.cloud.databricks.com`
 - Databricks profile: `kk-dev`
 - Default notebook path (remote): `/Users/kunal.rox@gmail.com/Diabetic patient exploration`
-- Default notebook file (local): `diabetic-patient-exploration.ipynb`
+- Default notebook file (local): `notebooks/diabetic-patient-exploration.ipynb`
 
 ## Key files
 
-- `pull_notebooks.sh`: exports notebook from Databricks to local file.
-- `push_notebooks.sh`: imports local notebook to Databricks (`--overwrite`).
+- `notebooks/pull_notebooks.sh`: exports notebook from Databricks to local file.
+- `notebooks/push_notebooks.sh`: imports local notebook to Databricks (`--overwrite`).
 - `README.md`: human-facing usage and key commands.
 
 ## Notebook authoring pattern
@@ -55,22 +55,22 @@ databricks workspace list /Users/kunal.rox@gmail.com --profile kk-dev
 ### Pull/push via helper scripts
 
 ```bash
-./pull_notebooks.sh
-./push_notebooks.sh
+./notebooks/pull_notebooks.sh
+./notebooks/push_notebooks.sh
 ```
 
 Custom arguments:
 
 ```bash
-./pull_notebooks.sh "/Users/kunal.rox@gmail.com/Some Notebook" "some-notebook.ipynb"
-./push_notebooks.sh "some-notebook.ipynb" "/Users/kunal.rox@gmail.com/Some Notebook"
+./notebooks/pull_notebooks.sh "/Users/kunal.rox@gmail.com/Some Notebook" "some-notebook.ipynb"
+./notebooks/push_notebooks.sh "some-notebook.ipynb" "/Users/kunal.rox@gmail.com/Some Notebook"
 ```
 
 Profile override:
 
 ```bash
-DATABRICKS_PROFILE=kk-dev ./pull_notebooks.sh
-DATABRICKS_PROFILE=kk-dev ./push_notebooks.sh
+DATABRICKS_PROFILE=kk-dev ./notebooks/pull_notebooks.sh
+DATABRICKS_PROFILE=kk-dev ./notebooks/push_notebooks.sh
 ```
 
 ## Direct CLI equivalents

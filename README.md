@@ -1,73 +1,28 @@
 # health-cat-dashboard
 
-Databricks notebook workflow for local development in this repo and sync to/from Databricks Workspace.
+## Introduction
 
-## Prerequisites
+- Goal: build Databricks dashboards to explore the UCI Diabetes 130-US hospitals dataset: [UCI dataset page](https://archive.ics.uci.edu/dataset/296/diabetes+130+us+hospitals+for+years+1999+2008).
+- Code explanation: this repo contains Python and SQL scripts that use the Databricks CLI to transform, analyze, and prepare data products on Databricks for dashboarding.
 
-- Databricks CLI installed (`databricks --version`)
-- Authenticated profile (`kk-dev`)
-- Workspace host: `https://dbc-e150c196-2b0e.cloud.databricks.com`
+## Installation and setup
 
-## Current Notebook
+### 1) Install Databricks CLI
 
-- Databricks path: `/Users/kunal.rox@gmail.com/Diabetic patient exploration`
-- Local file: `diabetic-patient-exploration.ipynb`
-
-## Key Commands
-
-### Authentication and verification
+Install and verify:
 
 ```bash
-databricks auth profiles
-databricks current-user me --profile kk-dev
-databricks workspace list / --profile kk-dev
+databricks --version
 ```
 
-### Pull notebook from Databricks to local repo
-
-```bash
-./pull_notebooks.sh
-```
-
-Custom pull:
-
-```bash
-./pull_notebooks.sh "/Users/kunal.rox@gmail.com/Some Notebook" "some-notebook.ipynb"
-```
-
-### Push local notebook back to Databricks
-
-```bash
-./push_notebooks.sh
-```
-
-Custom push:
-
-```bash
-./push_notebooks.sh "some-notebook.ipynb" "/Users/kunal.rox@gmail.com/Some Notebook"
-```
-
-### Override profile per command
-
-```bash
-DATABRICKS_PROFILE=kk-dev ./pull_notebooks.sh
-DATABRICKS_PROFILE=kk-dev ./push_notebooks.sh
-```
-
-## Notes
-
-- Scripts use `--format JUPYTER` and `--overwrite` on push.
-- If a command returns `Forbidden`, re-check VPN/network policy and run login again:
+### 2) Authenticate against your Databricks workspace
 
 ```bash
 databricks auth login --host https://dbc-e150c196-2b0e.cloud.databricks.com --profile kk-dev
+databricks auth profiles
 ```
 
-## AI-agent development workflow
-
-This repo includes helpers for running code against Databricks while keeping notebook/code local.
-
-### 1) Create local environment
+### 3) Python virtual environment setup
 
 ```bash
 python3 -m venv .venv
@@ -75,50 +30,9 @@ source .venv/bin/activate
 pip install -r requirements-dev.txt
 ```
 
-### 2) Set defaults
+## What else?
 
-```bash
-export DATABRICKS_PROFILE=kk-dev
-export DATABRICKS_CLUSTER_ID="<your-all-purpose-cluster-id>"
-```
+For reviewers, two short additions are usually helpful:
 
-### 3) Iterative remote execution (stateful context)
-
-Use this for agent loops (run code -> inspect result -> rerun):
-
-```bash
-python scripts/agent_exec.py --command "print('hello from cluster')"
-```
-
-Or send a larger command block:
-
-```bash
-python scripts/agent_exec.py --command-file prompt_code.py
-```
-
-### 4) Reproducible notebook run as one-time job
-
-```bash
-python scripts/run_notebook_job.py \
-  --notebook-path "/Users/kunal.rox@gmail.com/Diabetic patient exploration" \
-  --cluster-id "<your-all-purpose-cluster-id>"
-```
-
-With notebook parameters:
-
-```bash
-python scripts/run_notebook_job.py \
-  --notebook-path "/Users/kunal.rox@gmail.com/Diabetic patient exploration" \
-  --cluster-id "<your-all-purpose-cluster-id>" \
-  --param start_date=2026-01-01 \
-  --param end_date=2026-01-31
-```
-
-### 5) Notebook sync + execution loop
-
-```bash
-./pull_notebooks.sh
-# edit .ipynb locally with AI agent support
-./push_notebooks.sh
-python scripts/run_notebook_job.py --notebook-path "/Users/kunal.rox@gmail.com/Diabetic patient exploration" --cluster-id "<cluster-id>"
-```
+- **Repository layout:** notebooks and helpers are under `notebooks/`; Gold SQL definitions are under `gold_sql_scripts/`.
+- **Execution order:** Bronze -> Silver -> Gold, with notebook pattern: explore -> process -> verify -> write -> verify.
