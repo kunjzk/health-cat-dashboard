@@ -1,0 +1,16 @@
+# Notebook job for the UCI diabetes exploration workflow.
+# Paths are relative to this file (under resources/).
+
+resources:
+  jobs:
+    diabetic_exploration:
+      name: diabetic-patient-exploration
+
+      tasks:
+        - task_key: exploration
+          notebook_task:
+            notebook_path: ../notebooks/diabetic-patient-exploration.ipynb
+          new_cluster:
+            spark_version: 15.4.x-scala2.12
+            node_type_id: i3.xlarge
+            num_workers: 1
