@@ -1,0 +1,6 @@
+resources:
+  dashboards:
+    diabetes_re_admission_stats_usa_10_years:
+      display_name: "Diabetes Re-admission Stats (USA, 10 years)"
+      warehouse_id: 13a75c3edc23f286
+      file_path: ../src/diabetes_re_admission_stats_usa_10_years.lvdash.json

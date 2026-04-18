@@ -1,0 +1,845 @@
+{
+  "datasets": [
+    {
+      "config": {
+        "dimensions": [
+          {
+            "displayName": "Total Patients",
+            "expr": "source.total_patients",
+            "name": "total_patients"
+          },
+          {
+            "displayName": "Total Encounters",
+            "expr": "source.total_encounters",
+            "name": "total_encounters"
+          },
+          {
+            "displayName": "Avg Length Of Stay",
+            "expr": "source.avg_length_of_stay",
+            "name": "avg_length_of_stay"
+          },
+          {
+            "displayName": "Readmission Rate 30 D",
+            "expr": "source.readmission_rate_30d",
+            "name": "readmission_rate_30d"
+          }
+        ],
+        "measures": [
+          {
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count",
+            "expr": "COUNT(*)",
+            "name": "count"
+          }
+        ],
+        "source": "workspace.gold.readmissions_summary",
+        "version": "1.1"
+      },
+      "displayName": "readmissions_summary",
+      "name": "10ef6b38"
+    },
+    {
+      "config": {
+        "dimensions": [
+          {
+            "displayName": "Readmitted",
+            "expr": "source.readmitted",
+            "name": "readmitted"
+          },
+          {
+            "displayName": "Total Cases",
+            "expr": "source.total_cases",
+            "name": "total_cases"
+          },
+          {
+            "displayName": "Percentage",
+            "expr": "source.percentage",
+            "name": "percentage"
+          }
+        ],
+        "measures": [
+          {
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count",
+            "expr": "COUNT(*)",
+            "name": "count"
+          }
+        ],
+        "source": "workspace.gold.readmission_distribution",
+        "version": "1.1"
+      },
+      "displayName": "readmission_distribution",
+      "name": "d23508c0"
+    },
+    {
+      "config": {
+        "dimensions": [
+          {
+            "displayName": "Los Bucket",
+            "expr": "source.los_bucket",
+            "name": "los_bucket"
+          },
+          {
+            "displayName": "Total Cases",
+            "expr": "source.total_cases",
+            "name": "total_cases"
+          },
+          {
+            "displayName": "Readmitted Cases",
+            "expr": "source.readmitted_cases",
+            "name": "readmitted_cases"
+          },
+          {
+            "displayName": "Readmission Rate",
+            "expr": "source.readmission_rate",
+            "name": "readmission_rate"
+          }
+        ],
+        "measures": [
+          {
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count",
+            "expr": "COUNT(*)",
+            "name": "count"
+          }
+        ],
+        "source": "workspace.gold.readmission_by_los",
+        "version": "1.1"
+      },
+      "displayName": "readmission_by_los",
+      "name": "11b2fd87"
+    },
+    {
+      "config": {
+        "dimensions": [
+          {
+            "displayName": "Discharge Disposition",
+            "expr": "source.discharge_disposition",
+            "name": "discharge_disposition"
+          },
+          {
+            "displayName": "Total Cases",
+            "expr": "source.total_cases",
+            "name": "total_cases"
+          },
+          {
+            "displayName": "Readmitted Cases",
+            "expr": "source.readmitted_cases",
+            "name": "readmitted_cases"
+          },
+          {
+            "displayName": "Readmission Rate",
+            "expr": "source.readmission_rate",
+            "name": "readmission_rate"
+          }
+        ],
+        "measures": [
+          {
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count",
+            "expr": "COUNT(*)",
+            "name": "count"
+          }
+        ],
+        "source": "workspace.gold.readmission_by_discharge",
+        "version": "1.1"
+      },
+      "displayName": "readmission_by_discharge",
+      "name": "2fca5661"
+    },
+    {
+      "config": {
+        "dimensions": [
+          {
+            "displayName": "Diag 1",
+            "expr": "source.diag_1",
+            "name": "diag_1"
+          },
+          {
+            "displayName": "Total Cases",
+            "expr": "source.total_cases",
+            "name": "total_cases"
+          },
+          {
+            "displayName": "Readmitted Cases",
+            "expr": "source.readmitted_cases",
+            "name": "readmitted_cases"
+          },
+          {
+            "displayName": "Readmission Rate",
+            "expr": "source.readmission_rate",
+            "name": "readmission_rate"
+          }
+        ],
+        "measures": [
+          {
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count",
+            "expr": "COUNT(*)",
+            "name": "count"
+          }
+        ],
+        "source": "workspace.gold.readmission_by_diagnosis",
+        "version": "1.1"
+      },
+      "displayName": "readmission_by_diagnosis",
+      "name": "24f00294"
+    },
+    {
+      "config": {
+        "dimensions": [
+          {
+            "displayName": "Age Bucket",
+            "expr": "source.age_bucket",
+            "name": "age_bucket"
+          },
+          {
+            "displayName": "Total Cases",
+            "expr": "source.total_cases",
+            "name": "total_cases"
+          },
+          {
+            "displayName": "Readmitted Cases",
+            "expr": "source.readmitted_cases",
+            "name": "readmitted_cases"
+          },
+          {
+            "displayName": "Readmission Rate",
+            "expr": "source.readmission_rate",
+            "name": "readmission_rate"
+          }
+        ],
+        "measures": [
+          {
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count",
+            "expr": "COUNT(*)",
+            "name": "count"
+          }
+        ],
+        "source": "workspace.gold.readmission_by_age",
+        "version": "1.1"
+      },
+      "displayName": "readmission_by_age",
+      "name": "9e20abc6"
+    },
+    {
+      "config": {
+        "dimensions": [
+          {
+            "displayName": "Admission Type",
+            "expr": "source.admission_type",
+            "name": "admission_type"
+          },
+          {
+            "displayName": "Total Cases",
+            "expr": "source.total_cases",
+            "name": "total_cases"
+          },
+          {
+            "displayName": "Readmitted Cases",
+            "expr": "source.readmitted_cases",
+            "name": "readmitted_cases"
+          },
+          {
+            "displayName": "Readmission Rate",
+            "expr": "source.readmission_rate",
+            "name": "readmission_rate"
+          }
+        ],
+        "measures": [
+          {
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count",
+            "expr": "COUNT(*)",
+            "name": "count"
+          }
+        ],
+        "source": "workspace.gold.readmission_by_admission_type",
+        "version": "1.1"
+      },
+      "displayName": "readmission_by_admission_type",
+      "name": "3f6d87d4"
+    }
+  ],
+  "pages": [
+    {
+      "displayName": "Main view",
+      "layout": [
+        {
+          "position": {
+            "height": 1,
+            "width": 6,
+            "x": 0,
+            "y": 1
+          },
+          "widget": {
+            "name": "patients",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "10ef6b38",
+                  "disaggregated": false,
+                  "fields": [
+                    {
+                      "expression": "SUM(`total_patients`)",
+                      "name": "sum(total_patients)"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_patients)"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Total Patients"
+              },
+              "version": 2,
+              "widgetType": "counter"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 1,
+            "width": 6,
+            "x": 6,
+            "y": 1
+          },
+          "widget": {
+            "name": "total-encounters",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "10ef6b38",
+                  "disaggregated": false,
+                  "fields": [
+                    {
+                      "expression": "SUM(`total_encounters`)",
+                      "name": "sum(total_encounters)"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_encounters)"
+                }
+              },
+              "frame": {
+                "headerAlignment": "left",
+                "showTitle": true,
+                "title": "Total Encounters"
+              },
+              "version": 2,
+              "widgetType": "counter"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 1,
+            "width": 6,
+            "x": 0,
+            "y": 2
+          },
+          "widget": {
+            "name": "avg-length-of-stay",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "10ef6b38",
+                  "disaggregated": false,
+                  "fields": [
+                    {
+                      "expression": "SUM(`avg_length_of_stay`)",
+                      "name": "sum(avg_length_of_stay)"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(avg_length_of_stay)"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Avg Stay (Days)"
+              },
+              "version": 2,
+              "widgetType": "counter"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 1,
+            "width": 6,
+            "x": 6,
+            "y": 2
+          },
+          "widget": {
+            "name": "readmission-rate-30d",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "10ef6b38",
+                  "disaggregated": false,
+                  "fields": [
+                    {
+                      "expression": "SUM(`readmission_rate_30d`)",
+                      "name": "sum(readmission_rate_30d)"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(readmission_rate_30d)"
+                }
+              },
+              "frame": {
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Readmission (30d)"
+              },
+              "version": 2,
+              "widgetType": "counter"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 7,
+            "width": 12,
+            "x": 0,
+            "y": 3
+          },
+          "widget": {
+            "name": "distribution-of-readmissions",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "d23508c0",
+                  "disaggregated": true,
+                  "fields": [
+                    {
+                      "expression": "`readmitted`",
+                      "name": "readmitted"
+                    },
+                    {
+                      "expression": "`percentage`",
+                      "name": "percentage"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "label": {
+                  "show": true
+                },
+                "x": {
+                  "displayName": "Readmitted",
+                  "fieldName": "readmitted",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "displayName": "Percentage of patients",
+                  "fieldName": "percentage",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "description": "Readmitted in <30 days vs Readmitted in >30 days vs not readmitted",
+                "showDescription": true,
+                "showTitle": true,
+                "title": "Distribution of readmissions"
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 1,
+            "width": 12,
+            "x": 0,
+            "y": 10
+          },
+          "widget": {
+            "multilineTextboxSpec": {
+              "lines": [
+                "# <span style=\"text-align:center;display:block\"><span style=\"font-size:24px\">**Top 5 Risk Factors For Readmission**</span></span>"
+              ]
+            },
+            "name": "2ae5946f"
+          }
+        },
+        {
+          "position": {
+            "height": 1,
+            "width": 12,
+            "x": 0,
+            "y": 0
+          },
+          "widget": {
+            "multilineTextboxSpec": {
+              "lines": [
+                "# <span style=\"text-align:center;display:block\">**Population Statistics**</span>"
+              ]
+            },
+            "name": "635097a4"
+          }
+        },
+        {
+          "position": {
+            "height": 6,
+            "width": 12,
+            "x": 0,
+            "y": 36
+          },
+          "widget": {
+            "name": "readmission-by-age",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "9e20abc6",
+                  "disaggregated": true,
+                  "fields": [
+                    {
+                      "expression": "`age_bucket`",
+                      "name": "age_bucket"
+                    },
+                    {
+                      "expression": "`readmission_rate`",
+                      "name": "readmission_rate"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "label": {
+                  "show": true
+                },
+                "x": {
+                  "displayName": "Age range",
+                  "fieldName": "age_bucket",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "primary": {
+                    "fields": [
+                      {
+                        "displayName": "Readmission Rate",
+                        "fieldName": "readmission_rate"
+                      }
+                    ]
+                  },
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "secondary": {
+                    "fields": []
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "5. Readmission by Age Bucket"
+              },
+              "version": 1,
+              "widgetType": "combo"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 6,
+            "width": 12,
+            "x": 0,
+            "y": 11
+          },
+          "widget": {
+            "name": "readmission-by-diagnosis-1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "24f00294",
+                  "disaggregated": true,
+                  "fields": [
+                    {
+                      "expression": "`diag_1`",
+                      "name": "diag_1"
+                    },
+                    {
+                      "expression": "`readmission_rate`",
+                      "name": "readmission_rate"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "IN_RANGE(`total_cases`, 3000, NULL)"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "label": {
+                  "show": false
+                },
+                "x": {
+                  "displayName": "Diagnosis (ICD9)",
+                  "fieldName": "diag_1",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "displayName": "Readmission Rate",
+                  "fieldName": "readmission_rate",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "description": "Minimum 3000 encounters",
+                "showDescription": true,
+                "showTitle": true,
+                "title": "1. Readmission by Diagnosis (ICD9 Code)"
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 6,
+            "width": 12,
+            "x": 0,
+            "y": 17
+          },
+          "widget": {
+            "name": "re-admission-length-of-stay",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "11b2fd87",
+                  "disaggregated": true,
+                  "fields": [
+                    {
+                      "expression": "`los_bucket`",
+                      "name": "los_bucket"
+                    },
+                    {
+                      "expression": "`readmission_rate`",
+                      "name": "readmission_rate"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "x": {
+                  "displayName": "Length of stay (range)",
+                  "fieldName": "los_bucket",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "displayName": "Readmission Rate",
+                  "fieldName": "readmission_rate",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "2. Re-admission by length of initial hospitalization (days)\n"
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 7,
+            "width": 12,
+            "x": 0,
+            "y": 23
+          },
+          "widget": {
+            "name": "readmission-discharge-disposition",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2fca5661",
+                  "disaggregated": true,
+                  "fields": [
+                    {
+                      "expression": "`discharge_disposition`",
+                      "name": "discharge_disposition"
+                    },
+                    {
+                      "expression": "`readmission_rate`",
+                      "name": "readmission_rate"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "IN_RANGE(`total_cases`, 2000D, NULL)"
+                    },
+                    {
+                      "expression": "`discharge_disposition` IS NULL OR `discharge_disposition` NOT IN ('NULL')"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "x": {
+                  "axis": {
+                    "hideLabels": false,
+                    "labelAngle": 0
+                  },
+                  "displayName": "Discharge Disposition",
+                  "fieldName": "discharge_disposition",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "displayName": "Readmission Rate",
+                  "fieldName": "readmission_rate",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "description": "Min. 2000 Encounters",
+                "showDescription": true,
+                "showTitle": true,
+                "title": "3. Readmission by Discharge Disposition"
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          }
+        },
+        {
+          "position": {
+            "height": 6,
+            "width": 12,
+            "x": 0,
+            "y": 30
+          },
+          "widget": {
+            "name": "4-readmission-rate-1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "3f6d87d4",
+                  "disaggregated": false,
+                  "fields": [
+                    {
+                      "expression": "`admission_type`",
+                      "name": "admission_type"
+                    },
+                    {
+                      "expression": "SUM(`readmission_rate`)",
+                      "name": "sum(readmission_rate)"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`admission_type` IS NULL OR `admission_type` NOT IN ('Trauma Center', 'Not Mapped', 'NULL', 'Not Available')"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "encodings": {
+                "x": {
+                  "fieldName": "admission_type",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(readmission_rate)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "4. Readmission Rate"
+              },
+              "version": 3,
+              "widgetType": "bar"
+            }
+          }
+        }
+      ],
+      "layoutVersion": "GRID_V1",
+      "name": "4aab08f6",
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "displayName": "Global Filters",
+      "layoutVersion": "GRID_V1",
+      "name": "18eaf778",
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    }
+  ],
+  "uiSettings": {
+    "applyModeEnabled": false,
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}
