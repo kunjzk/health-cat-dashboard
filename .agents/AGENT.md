@@ -5,21 +5,22 @@
 This repository stores Databricks notebooks for local development and version control.
 
 Primary workflow:
-1. Pull notebook(s) from Databricks Workspace into this repo.
+1. Pull notebook(s) from Databricks Workspace into this repo (when needed).
 2. Edit notebooks locally (`.ipynb`).
-3. Push notebook(s) back to Databricks Workspace.
+3. Deploy to the workspace with `databricks bundle deploy` (see below).
 
 ## Environment context
 
 - Workspace host: `https://dbc-e150c196-2b0e.cloud.databricks.com`
 - Databricks profile: `kk-dev`
-- Default notebook path (remote): `/Users/kunal.rox@gmail.com/Diabetic patient exploration`
-- Default notebook file (local): `notebooks/diabetic-patient-exploration.ipynb`
+- Bundle deploy root (remote): `/Users/kunal.rox@gmail.com/.bundle/health-cat-dashboard/dev`
+- Default notebook (single local source): `notebooks/diabetic-patient-exploration.ipynb`
+- Expected notebook path in workspace after deploy: `/Users/kunal.rox@gmail.com/notebooks/diabetic-patient-exploration`
 
 ## Key files
 
-- `notebooks/pull_notebooks.sh`: exports notebook from Databricks to local file.
-- `notebooks/push_notebooks.sh`: imports local notebook to Databricks (`--overwrite`).
+- `notebooks/pull_notebooks.sh`: exports a notebook from an arbitrary workspace path to local `.ipynb`.
+- `databricks.yml`: Asset Bundle config; deploy uses `sync.paths` so only `notebooks/diabetic-patient-exploration.ipynb` is uploaded.
 - `README.md`: human-facing usage and key commands.
 
 ## Notebook authoring pattern
@@ -52,38 +53,53 @@ databricks workspace list /Users --profile kk-dev
 databricks workspace list /Users/kunal.rox@gmail.com --profile kk-dev
 ```
 
-### Pull/push via helper scripts
+### Deploy notebook (Asset Bundle)
+
+From the repository root:
+
+```bash
+databricks bundle validate --profile kk-dev
+databricks bundle deploy -t dev --profile kk-dev
+```
+
+This uploads only `notebooks/diabetic-patient-exploration.ipynb` to `/Users/kunal.rox@gmail.com/notebooks/` in the workspace.
+
+### Verify notebook exists at expected workspace path
+
+Run this right after deploy:
+
+```bash
+databricks workspace list "/Users/kunal.rox@gmail.com/notebooks" --profile kk-dev
+```
+
+Expected row:
+
+- `NOTEBOOK ... /Users/kunal.rox@gmail.com/notebooks/diabetic-patient-exploration`
+
+### Pull from an arbitrary workspace path (optional)
 
 ```bash
 ./notebooks/pull_notebooks.sh
-./notebooks/push_notebooks.sh
 ```
 
 Custom arguments:
 
 ```bash
-./notebooks/pull_notebooks.sh "/Users/kunal.rox@gmail.com/Some Notebook" "some-notebook.ipynb"
-./notebooks/push_notebooks.sh "some-notebook.ipynb" "/Users/kunal.rox@gmail.com/Some Notebook"
+./notebooks/pull_notebooks.sh "/Users/kunal.rox@gmail.com/notebooks/diabetic-patient-exploration.ipynb" "notebooks/diabetic-patient-exploration.ipynb"
 ```
 
 Profile override:
 
 ```bash
 DATABRICKS_PROFILE=kk-dev ./notebooks/pull_notebooks.sh
-DATABRICKS_PROFILE=kk-dev ./notebooks/push_notebooks.sh
 ```
 
-## Direct CLI equivalents
+## Direct CLI equivalent (pull only)
 
 ```bash
-databricks workspace export "/Users/kunal.rox@gmail.com/Diabetic patient exploration" \
+databricks workspace export "/Users/kunal.rox@gmail.com/notebooks/diabetic-patient-exploration.ipynb" \
   --format JUPYTER \
-  --file "diabetic-patient-exploration.ipynb" \
-  --profile kk-dev
-
-databricks workspace import "diabetic-patient-exploration.ipynb" "/Users/kunal.rox@gmail.com/Diabetic patient exploration" \
-  --format JUPYTER \
-  --overwrite \
+  --file "notebooks/diabetic-patient-exploration.ipynb" \
   --profile kk-dev
 ```
 

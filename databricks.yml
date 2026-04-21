@@ -2,8 +2,10 @@
 bundle:
   name: health-cat-dashboard
 
-include:
-  - resources/*.yml
+# Sync only notebook content; keep bundle metadata under .bundle.
+sync:
+  paths:
+    - notebooks/diabetic-patient-exploration.ipynb
 
 targets:
   dev:
@@ -11,7 +13,10 @@ targets:
     default: true
     workspace:
       host: https://dbc-e150c196-2b0e.cloud.databricks.com
-      root_path: /Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+      root_path: /Users/kunal.rox@gmail.com/.bundle/health-cat-dashboard/dev
+      file_path: /Users/kunal.rox@gmail.com/notebooks
+      artifact_path: /Users/kunal.rox@gmail.com/.bundle/health-cat-dashboard/dev/artifacts
+      state_path: /Users/kunal.rox@gmail.com/.bundle/health-cat-dashboard/dev/state
   prod:
     mode: production
     workspace:
