@@ -7,6 +7,17 @@ sync:
   paths:
     - notebooks/diabetic-patient-exploration.ipynb
 
+resources:
+  jobs:
+    diabetic_serverless_job:
+      name: diabetic-patient-exploration-run
+      tasks:
+        - task_key: main_task
+          notebook_task:
+            # Run the same notebook path that bundle deploy syncs under workspace.file_path.
+            notebook_path: ${workspace.file_path}/notebooks/diabetic-patient-exploration
+            source: WORKSPACE
+
 targets:
   dev:
     mode: development
@@ -14,11 +25,5 @@ targets:
     workspace:
       host: https://dbc-e150c196-2b0e.cloud.databricks.com
       root_path: /Users/kunal.rox@gmail.com/.bundle/health-cat-dashboard/dev
-      file_path: /Users/kunal.rox@gmail.com/notebooks
       artifact_path: /Users/kunal.rox@gmail.com/.bundle/health-cat-dashboard/dev/artifacts
       state_path: /Users/kunal.rox@gmail.com/.bundle/health-cat-dashboard/dev/state
-  prod:
-    mode: production
-    workspace:
-      host: https://dbc-e150c196-2b0e.cloud.databricks.com
-      root_path: /Shared/.bundle/${bundle.name}/${bundle.target}

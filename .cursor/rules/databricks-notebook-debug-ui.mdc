@@ -1,0 +1,14 @@
+---
+description: Debug Databricks notebook runs with exit() first; ask user for UI only if exit cannot help.
+alwaysApply: true
+---
+
+# Databricks notebook run debugging
+
+When investigating a **Databricks notebook job run** (including missing `notebook_output`, wrong cell behavior, or anything where you might reach for **`jobs export-run` HTML**, embedded notebook models, or base64/URL decoding):
+
+1. **First** narrow the problem using **`dbutils.notebook.exit(...)`** from the notebook: emit a small JSON string (status, message, last exception, which cell ran, partial previews). Redeploy if needed, re-run the job, then read **`databricks jobs get-run-output`** on the **task** `run_id`.
+
+2. **Do not** parse `export-run` HTML, decode `__DATABRICKS_NOTEBOOK_MODEL`, or dig through base64/encoded UI payloads **unless** `exit()` truly cannot express what you need (e.g. purely visual/HTML-only issues).
+
+3. **If** `exit()` cannot surface enough signal after a reasonable attempt, **stop** and **ask the user to check the Databricks UI** (run page, notebook editor, cluster/driver logs there) instead of continuing deep HTML/binary inspection in the agent.
