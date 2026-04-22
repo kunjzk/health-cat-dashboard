@@ -12,17 +12,22 @@ Hospital teams need a clear view of what drives diabetic patient readmissions (a
 ## What This Project Delivers
 
 - A Databricks notebook workflow for exploration and transformation: `notebooks/diabetic-patient-exploration.ipynb`
-- Gold-layer SQL analyses for readmission slices by key dimensions:
-  - `gold_sql_scripts/readmission_distribution.sql`
-  - `gold_sql_scripts/readmission_by_age.sql`
-  - `gold_sql_scripts/readmission_by_diagnosis.sql`
-  - `gold_sql_scripts/readmission_by_los.sql`
-  - `gold_sql_scripts/readmission_by_admission_type.sql`
-  - `gold_sql_scripts/readmission_by_discharge.sql`
-  - `gold_sql_scripts/readmissions_summary.sql`
+- Gold-layer SQL scripts (`gold_sql_scripts/*`) for readmission rates by key dimensions:
 - Databricks dashboard assets:
   - `src/diabetes_re_admission_stats_usa_10_years.lvdash.json`
   - `pdf/` (presentation export directory for dashboard PDFs)
+
+## Agentic Development with Cursor
+
+This repository is also a practical example of agentic analytics development in Cursor.
+
+- The `NOTEBOOK` skill gives an agent the ability to fully autonomously write an ETL pipeline using Jupyter notebooks.
+
+Automation journey next steps:
+
+- Automate SQL query generation, execution, and review loops.
+- Automate Databricks dashboard edits and rapid iteration of visual analytics.
+
 
 ## Architecture and Data Flow
 
@@ -36,8 +41,6 @@ flowchart LR
   goldLayer --> sqlArtifacts[GoldSQLScripts]
   sqlArtifacts --> dashboardAssets[DatabricksDashboard]
 ```
-
-
 
 ## Repository Map
 
@@ -78,15 +81,6 @@ databricks bundle validate --profile <DATABRICKS_PROFILE>
 databricks bundle deploy -t dev --profile <DATABRICKS_PROFILE>
 ```
 
-## Demo in 3-5 Minutes
-
-1. Briefly explain the readmission problem and target outcomes.
-2. Open `notebooks/diabetic-patient-exploration.ipynb` and show exploration + transformation flow.
-3. Highlight one or two SQL files in `gold_sql_scripts/` (for example, age and diagnosis views).
-4. Show deployed dashboard assets and walk through key readmission visuals.
-5. Open `pdf/` and show the exported dashboard PDF in presentation format.
-6. Close with impact and planned automation steps.
-
 ## Impact and Next Steps
 
 Current value:
@@ -100,19 +94,6 @@ Next improvements:
 - Add stronger automated data quality checks per medallion layer.
 - Add CI checks for bundle validation and SQL quality.
 - Expand scenario-specific readmission cohorts and benchmark slices.
-
-## Agentic Development with Cursor
-
-This repository is also a practical example of agentic analytics development in Cursor.
-
-- The `NOTEBOOK` skill gives an agent the ability to explore data autonomously.
-- The `NOTEBOOK` skill enables autonomous transformation steps in notebook workflows.
-- The `NOTEBOOK` skill allows agents to write processed outputs to Unity Catalog.
-
-Automation journey next steps:
-
-- Automate SQL query generation, execution, and review loops.
-- Automate Databricks dashboard edits and rapid iteration of visual analytics.
 
 ## Appendix: Technical Commands
 
