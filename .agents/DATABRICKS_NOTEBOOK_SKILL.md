@@ -76,6 +76,62 @@ Use this guide when iterating on notebooks locally and executing them in Databri
 - Quick parse example:
   - `python3 -c "import json,sys; d=json.load(sys.stdin); print(json.loads(d['notebook_output']['result'])['ok'])"`
 
+### JSON schema details for `dbutils.notebook.exit(...)`
+
+- The notebook should call `dbutils.notebook.exit(json.dumps(payload))` once at the end.
+- `payload` should be a JSON object with this minimal shape:
+
+```json
+{
+  "ok": true,
+  "message": "Notebook finished successfully.",
+  "table": "workspace.silver.patient_encounters",
+  "preview": {
+    "source_cell": "cell_11",
+    "columns": ["col1", "col2"],
+    "rows": [{"col1": "v1", "col2": "v2"}]
+  },
+  "previews": {
+    "cell_5": {
+      "type": "dataframe",
+      "columns": ["..."],
+      "rows": [{"...": "..."}],
+      "truncated": true
+    },
+    "cell_8": {
+      "type": "repr",
+      "value": "short repr output..."
+    },
+    "cell_9": {
+      "type": "error",
+      "message": "error text..."
+    }
+  }
+}
+```
+
+- Field notes:
+  - `ok`: boolean success flag for agent decision-making.
+  - `message`: short run summary.
+  - `table`: main output table (or `null` if none).
+  - `preview`: optional top-level quick preview (typically first useful dataframe preview).
+  - `previews`: per-cell collected previews keyed by `cell_<execution_count>`.
+- Keep payload small to stay under Jobs API output limits:
+  - cap dataframe previews (for example 5 rows, limited columns).
+  - truncate long strings/repr output.
+  - if payload gets too large, keep only the most recent N previews.
+
+### Validation checklist (run output contract)
+
+- `notebook_output.result` exists and is valid JSON.
+- `ok` is present and boolean.
+- `message` is present and non-empty.
+- `table` is present (`null` allowed for exploratory runs).
+- `previews` is present and is an object (empty object is acceptable).
+- If `preview` is not `null`, it includes `columns` and `rows`.
+- Dataframe previews are capped (small row/column count) and may set `truncated: true`.
+- On failed runs, set `ok: false` and include a clear failure `message`.
+
 ## Quick demo command sequence (copy/paste)
 
 ```bash
